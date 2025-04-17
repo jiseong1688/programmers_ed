@@ -8,7 +8,8 @@ export const vars = createGlobalTheme(":root",{
         mainFadeBright: "#ffb74da6",
         list: "rgb(235, 236,240)",
         task: "rgb(255,255,255)",
-        brighttText: "rgb(255,255,255)",
+        taskHover: "rgb(245, 245, 245)",
+        brightText: "rgb(255,255,255)",
         darkText: "rgb(24,42,77)",
         secondaryDarkText: "rgb(94,108,132)",
         secondaryDarkTextHover:" rgb(218,219,226)",
@@ -43,8 +44,10 @@ export const vars = createGlobalTheme(":root",{
 
 export const appContainer = style({
     display: 'flex',
-    flexDirection: 'row',
-    height:'100vh',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    height: 'max-content',
+    width:'100%'
 })
 
 export const board = style({
