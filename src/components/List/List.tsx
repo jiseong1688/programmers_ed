@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import {GrSubtract} from 'react-icons/gr';
 import Task from '../Task/Task';
 import ActionButton from '../ActionButton/ActionButton';
@@ -30,7 +30,7 @@ const List: FC<TlistProps> = ({
         logId: v4(),
         logMessage: `리스트 삭제하기: ${list.listName}`,
         logAuthor: "User",
-        logTimeStmp: String(Date.now())
+        logTimestamp: String(Date.now())
       })
     )
   }
@@ -38,7 +38,6 @@ const List: FC<TlistProps> = ({
   const handleTaskChange = (
     boardId: string,
     listId: string,
-    taskId: string,
     task: ITask
   )=>{
     dispatch(setModalData({boardId, listId, task}))
@@ -62,7 +61,7 @@ const List: FC<TlistProps> = ({
       {list.tasks.map((task, index)=>(
         <div
           key = {task.taskId}
-          onClick={()=>handleTaskChange(boardId, list.listId, task.taskId, task)}
+          onClick={()=>handleTaskChange(boardId, list.listId, task)}
         >
           <Task
             taskName = {task.taskName}

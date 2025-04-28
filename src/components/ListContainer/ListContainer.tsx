@@ -1,4 +1,4 @@
-import React,{FC} from 'react'
+import {FC} from 'react'
 import {IList} from '../../types'
 import { listsContainer } from './Listcontainer.css';
 import List from '../List/List';

@@ -38,7 +38,7 @@ const SideForm: FC<TSideFromProps> = ({
       dispatch(
         addLog({
           logId: uuidv4(),
-          logMessge: `게시판 등록: ${inputText}`,
+          logMessage: `게시판 등록: ${inputText}`,
           logAuthor: "User",
           logTimestamp: String(Date.now())
         })
