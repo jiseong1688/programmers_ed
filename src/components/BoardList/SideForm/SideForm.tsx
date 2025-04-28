@@ -7,14 +7,11 @@ import { useTypedDispatch } from '../../../hooks/redux';
 import {v4 as uuidv4} from 'uuid'
 
 type TSideFromProps = {
-  inputRef: React.RefObject<HTMLInputElement>;
   setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SideForm: FC<TSideFromProps> = ({
-  setIsFormOpen,
-  inputRef
-})=>{
+  setIsFormOpen})=>{
   const [inputText, setInputText] = useState('');
   const dispatch = useTypedDispatch();
 

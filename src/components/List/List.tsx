@@ -10,6 +10,7 @@ import {addLog} from '../../store/slices/loggerSlice';
 import { ITask } from '../../types';
 import { setModalData } from '../../store/slices/modalslice';
 import { deleteButton, header, listWrapper, name } from './List.css';
+import { Droppable } from '@hello-pangea/dnd';
 
 type TlistProps = {
   boardId: string;
@@ -45,12 +46,18 @@ const List: FC<TlistProps> = ({
   }
 
   return (
-    <div className={listWrapper}>
+    <Droppable droppableId={list.listId}>
+      {provided => (
+    <div 
+      className={listWrapper}
+      {...provided.droppableProps}
+      ref={provided.innerRef}>
       <div className={header}>
         <div className={name}>{list.listName}</div>
         <GrSubtract
           className={deleteButton}
-          onClick={()=>handleListDelete(list.listId)}/>
+          onClick={()=>handleListDelete(list.listId)}
+        />
       </div>
       {list.tasks.map((task, index)=>(
         <div
@@ -66,8 +73,13 @@ const List: FC<TlistProps> = ({
           />
         </div>
         ))}
-      <ActionButton/>
+        {provided.placeholder}
+      <ActionButton
+        boardId={boardId}
+        listId={list.listId}/>
     </div>
+    )}
+    </Droppable>
   )
 }
 
