@@ -5,7 +5,7 @@ const ensureAuthorization = require('../controller/auth');
 const jwt = require('jsonwebtoken')
 
 const allBooks = (req,res)=>{
-    let {category_id, news, limit, currentPage} = req.query;
+    let {category_id, news, limit = 10, currentPage=1} = req.query;
 
     let sql = "SELECT SQL_CALC_FOUND_ROWS *, (SELECT count(*) FROM likes WHERE liked_book_id=books.id) AS likes FROM Bookshop.books";
     let values = [];
@@ -37,11 +37,11 @@ const allBooks = (req,res)=>{
             return res.status(StatusCodes.BAD_REQUEST).end();
         }
         if(results.length){
-            results.map(function(result) {
-                result.pubDate = result.pub_date;
-                delete results.pub_date;
-            })
-            return output.books = results
+            const update = results.map(({pub_date,...rest})=>({
+                ...rest,
+                pubDate: pub_date
+            }))
+            return output.books = update
         } else 
             return res.status(StatusCodes.BAD_REQUEST).end();
     });

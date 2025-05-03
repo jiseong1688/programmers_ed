@@ -15,23 +15,16 @@ const join = (req,res,next)=>{
     let sql = 'INSERT INTO users (email, password, salt) VALUES(?,?,?)';
     let values = [email, hashPassword, salt];
     db.query(sql,values,(err, results)=>{
-        if(results && results.length >0){
-            console.log("이미 있는 아이디 입니다.")
-            res.status(StatusCodes.BAD_REQUEST).json({message: "이미 사용중인 아이디입니다."})
-        } else {
-            db.query(insertEmailSql,[email,hashPassword,salt], (err,result)=>{
-                if (err) {
-                    console.log(err)
-                    return res.status(StatusCodes.NOT_FOUND).json({message:" 회원가입에 살패했습니다."})
-                }
-                
-                if (results.affectedRows){
-                    console.log("회원가입에 성공하였습니다.");
-                    return res.status(StatusCodes.CREATED).json(results);
-                }else
-                    return res.status(StatusCodes.UNAUTHORIZED).end();
-            })
+        if (err) {
+            console.log(err)
+            return res.status(StatusCodes.NOT_FOUND).json({message:" 회원가입에 살패했습니다."})
         }
+        
+        if (results.affectedRows){
+            console.log("회원가입에 성공하였습니다.");
+            return res.status(StatusCodes.CREATED).json(results);
+        }else
+            return res.status(StatusCodes.UNAUTHORIZED).end();
     })
 }
 
@@ -62,7 +55,7 @@ const login = (req,res)=>{
                 });
                 console.log(token);
 
-                return res.status(StatusCodes.OK).json(results)
+                return res.status(StatusCodes.OK).json({ ...results[0], token:token})
             } else {
                 return res.status(StatusCodes.UNAUTHORIZED).end();
             }
