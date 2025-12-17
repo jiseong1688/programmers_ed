@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+@tailwind utilities;
+
+.dajung-container {
+  @apply max-w-[77.50rem] my-0 m-auto pt-40 pb-20 box-border;
+}
+
+.banner-box {
+  @apply w-[86.25rem] h-64 -mt-16 -ml-16 rounded-lg overflow-hidden;
+}
+
+.banner-img {
+  @apply w-full h-full object-cover rounded-lg;
+}
+
+.product-section {
+  @apply mt-16 py-0 px-2 w-full mb-24;
+}
+
+.section-title {
+  @apply text-xl font-bold mb-8 -ml-16;
+}
+
+.product-grid {
+  @apply grid grid-cols-[repeat(6,_1fr)] grid-rows-[repeat(2,_300px)] gap-[1.88rem] justify-center;
+}
+
+.product-card {
+  @apply w-50 h-auto flex flex-col bg-white border border-gray-200 rounded overflow-hidden;
+}
+
+.product-card:hover {
+  @apply cursor-pointer;
+}
+
+.product-card-link {
+  @apply text-inherit;
+}
+
+.card-image {
+  @apply w-full h-56 object-cover border-b border-gray-200;
+}
+
+.card-info {
+  @apply p-3 flex flex-col gap-[0.38rem];
+}
+
+.card-name {
+  @apply text-base font-light text-black overflow-hidden text-ellipsis line-clamp-1;
+}
+
+.card-bottom {
+  @apply flex justify-between items-center;
+}
+
+.card-price {
+  @apply text-base font-semibold text-black;
+}
+
+.card-time {
+  @apply text-sm font-normal text-black/[0.2];
+}
+
+.pagination {
+  @apply flex justify-center items-center mt-36 -mb-36 gap-[0.88rem];
+}
+
+.page-number {
+  @apply text-lg font-normal text-[#666] cursor-pointer;
+}
+
+.page-number.active {
+  @apply font-semibold text-black;
+}
+
+.arrow {
+  @apply w-6 h-6 bg-[#ffffff] text-black text-base flex items-center justify-center cursor-pointer p-0 rounded;
+}
+
+.hasMore-Container {
+  @apply flex justify-center items-center my-8 mx-0 text-center text-xl font-bold;
+}
