@@ -1,0 +1,18 @@
+{
+  "name": "@fundmate-be/interaction-service",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "node ../../scripts/dev.mjs --service=interaction-service",
+    "build:dev": "cd ../.. && nx run interaction-service:build:development",
+    "build:prod": "cd ../.. && nx run interaction-service:build:production",
+    "start": "cd ../.. && nx run interaction-service:serve:production",
+    "test:action": "cd ../.. && nx test interaction-service",
+    "clean:sh": "cd ../../scripts && bash clean_repo.sh",
+    "clean:ps1": "cd ../../scripts && powershell -ExecutionPolicy Bypass -File clean_repo.ps1",
+    "clean": "node -e \"require('child_process').execSync(process.platform==='win32' ? 'npm run clean:ps1' : 'npm run clean:sh', {stdio:'inherit'});\" && npx nx show projects"
+  },
+  "dependencies": {
+    "typeorm": "^0.3.25"
+  }
+}
